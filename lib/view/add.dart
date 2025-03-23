@@ -45,7 +45,7 @@ class AddTodoPage extends StatelessWidget {
                     final newTodo = todomodel(
                       title: titleController.text,
                       description: descriptionController.text,
-                      id: DateTime.now().millisecondsSinceEpoch.toInt()
+                      id: DateTime.now().millisecondsSinceEpoch.toString()
                     );
                     todoProvider.addTodos(newTodo);
                     Navigator.pop(context);
