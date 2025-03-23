@@ -14,5 +14,17 @@ class todomodel{
 
   
     );
+
+
+  
+  }
+
+
+  Map<String,dynamic>tojson(){
+    return {
+'id':id,
+'title':title,
+'description' : description
+    };
   }
 }
