@@ -25,57 +25,50 @@ class MyApp extends StatelessWidget {
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
+ @override
+//  void initState(){
+//   Provider.of(context)
+//  }
 
   @override
   Widget build(BuildContext context) {
+
     final provider = Provider.of<Todoprovider>(context);
 
-    return Scaffold(
-      appBar: AppBar(title: const Text("Todo List")),
-      body: provider.isloading
-          ? const Center(child: CircularProgressIndicator())
-          : ListView.builder(
-              itemCount: provider.todos.length,
-              itemBuilder: (context, index) {
-                final todo = provider.todos[index];
-                return Card(
-                  child: ListTile(
-                    title: Text(todo.title),
-                    subtitle: Text(todo.description),
-                    onTap: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ViewTodoPage(todo: todo),
+    return Consumer<Todoprovider>(
+      builder: (context, valuepro, child) => 
+       Scaffold(
+          // Provider.of<Todoprovider>(context).getTodo();
+        appBar: AppBar(title: const Text("Todo List")),
+        body: 
+        provider.isloading
+            ? const Center(child: CircularProgressIndicator())
+            : ListView.builder(
+                itemCount: provider.todos.length,
+                itemBuilder: (context, index) {
+                  final todo = provider.todos[index];
+                  return Card(
+                    child: ListTile(
+                      title: Text(todo.title),
+                      subtitle: Text(todo.description),
+                      onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ViewTodoPage(todo: todo),
+                        ),
                       ),
+                      trailing: Icon(Icons.table_rows_rounded)
                     ),
-                    trailing: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        IconButton(
-                          icon: const Icon(Icons.edit),
-                          onPressed: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => EditTodoPage(todo: todo),
-                            ),
-                          ),
-                        ),
-                        IconButton(
-                          icon: const Icon(Icons.delete),
-                          onPressed: () => provider.deleteTodo(todo.id.toString()),
-                        ),
-                      ],
-                    ),
-                  ),
-                );
-              },
-            ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) =>  AddTodoPage()),
+                  );
+                },
+              ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () => Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) =>  AddTodoPage()),
+          ),
+          child: const Icon(Icons.add),
         ),
-        child: const Icon(Icons.add),
       ),
     );
   }

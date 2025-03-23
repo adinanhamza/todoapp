@@ -49,7 +49,7 @@ Future<void>updateTodo(todomodel todo)async{
   notifyListeners();
 
   try {
-    await apiservice.UpdateTodo(todo, todo.id.toString());
+    await apiservice.updateTodo(todo, todo.id.toString());
     await getTodo();
     log('todo updated provider data ${todo.toString()}');
   } catch (e) {
