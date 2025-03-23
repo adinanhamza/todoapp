@@ -9,8 +9,8 @@ class todomodel{
   factory todomodel.fromjson(Map<String,dynamic>json){
     return todomodel(
       id: json['id'],
-  title: json['description'] ?? 'no data',
-  description: json['title'] ?? 'no data',
+  title: json['title'] ?? 'no title',
+  description: json['description'] ?? 'no description',
 
   
     );

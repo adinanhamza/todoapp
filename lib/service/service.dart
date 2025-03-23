@@ -8,7 +8,7 @@ class Apiservice{
   Dio dio = Dio();
 
 
-  Future<List<todomodel>> getTodo()async{
+  Future<List<todomodel>> fetchTodo()async{
  try {
       final response = await dio.get(baseurl);
       if(response.statusCode == 200){
