@@ -5,7 +5,7 @@ import 'package:todo_app/model/model.dart';
 
 
 class EditTodoPage extends StatefulWidget {
-  final todomodel todo; // Existing Todo Data
+  final todomodel todo; 
 
   const EditTodoPage({Key? key, required this.todo}) : super(key: key);
 
@@ -39,9 +39,9 @@ class _EditTodoPageState extends State<EditTodoPage> {
       );
 
       Provider.of<Todoprovider>(context, listen: false)
-          .updateTodo(updatedTodo);
+          .UpdateTodo(updatedTodo);
 
-      Navigator.pop(context); // Go back after updating
+      Navigator.pop(context); 
     
   }
 

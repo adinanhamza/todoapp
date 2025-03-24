@@ -2,33 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/controller/provider.dart';
 import 'package:todo_app/view/add.dart';
-import 'package:todo_app/view/update.dart';
 import 'package:todo_app/view/view.dart';
 
 
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Todo App',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const HomePage(),
-    );
-  }
+  State<HomePage> createState() => _HomePageState();
 }
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class _HomePageState extends State<HomePage> {
  @override
-//  void initState(){
-//   Provider.of(context)
-//  }
+ void initState(){
+  super.initState();
+  WidgetsBinding.instance.addPostFrameCallback((_){
+    Provider.of<Todoprovider>(context,listen: false).getTodo();
+  });
+ }
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +30,7 @@ class HomePage extends StatelessWidget {
     return Consumer<Todoprovider>(
       builder: (context, valuepro, child) => 
        Scaffold(
-          // Provider.of<Todoprovider>(context).getTodo();
+        
         appBar: AppBar(title: const Text("Todo List")),
         body: 
         provider.isloading

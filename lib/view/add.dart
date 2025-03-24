@@ -46,7 +46,7 @@ class AddTodoPage extends StatelessWidget {
                       description: descriptionController.text,
                       id: DateTime.now().millisecondsSinceEpoch.toString()
                     );
-                    todoProvider.addTodos(newTodo);
+                    todoProvider.addtodo(newTodo);
                     Navigator.pop(context);
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(
